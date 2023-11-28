@@ -95,4 +95,24 @@ Variant Variant::from_json_string(std::string sjson) {
     return parse_json(jsonlib::Json(json)); // Convertir json11::Json a jsonlib::Json y llamar a parse_json
 }
 
+Variant Variant::parse_json(jsonlib::Json job) {
+    if (job.is_number()) {
+        return Variant(Number, job.to_string());
+    } else if (job.is_string()) {
+        return Variant(Cadena, job.to_string());
+    } else if (job.is_array()) {
+        Variant result(List);
+        for (const auto& elem : job.array_items()) {
+            result.list.push_back(parse_json(elem));
+        }
+        return result;
+    } else if (job.is_object()) {
+        // Puedes manejar objetos JSON según tus necesidades
+    }
+
+    // Por defecto, devolver una instancia vacía
+    return Variant();
+}
+
+
 
