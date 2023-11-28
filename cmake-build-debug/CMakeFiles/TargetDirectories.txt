@@ -1,0 +1,3 @@
+C:/Users/carlo/Documents/GitHub/Caso_final_integrador/cmake-build-debug/CMakeFiles/Caso_final_integrador.dir
+C:/Users/carlo/Documents/GitHub/Caso_final_integrador/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/carlo/Documents/GitHub/Caso_final_integrador/cmake-build-debug/CMakeFiles/rebuild_cache.dir
