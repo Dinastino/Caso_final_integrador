@@ -30,7 +30,33 @@ public:
     static Variant from_json_string(string json);
     static Variant parse_json(jsonlib::Json job);  // Asegúrate de que esta es la definición correcta de la función
 };
-
+string Variant::to_string() {
+    switch (type) {
+        case Symbol:
+            return val;
+        case Number:
+            return std::to_string(std::stod(val)); // Convertir el valor numérico a string
+        case List: {
+            string result = "(";
+            for (const auto& elem : list) {
+                result += elem.to_string() + " ";
+            }
+            if (!list.empty()) {
+                result.pop_back(); // Eliminar el espacio extra al final
+            }
+            result += ")";
+            return result;
+        }
+        case Proc:
+            return "Proc";
+        case Lambda:
+            return "Lambda";
+        case Cadena:
+            return val; // Devolver el valor de la cadena
+        default:
+            return "UnknownType";
+    }
+}
 string Variant::to_string() {
     // Tu implementación aquí
 }
