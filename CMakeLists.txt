@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Caso_final_integrador
         main.cpp
-        README.md)
+        README.md
+        JSON.hpp)
