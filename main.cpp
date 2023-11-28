@@ -57,18 +57,32 @@ string Variant::to_string() {
             return "UnknownType";
     }
 }
-string Variant::to_string() {
-    // Tu implementación aquí
-}
 
 string Variant::to_json_string() {
-    // Tu implementación aquí
+    switch (type) {
+        case Symbol:
+        case Cadena:
+            return "\"" + val + "\"";
+        case Number:
+            return val;
+        case List: {
+            string result = "[";
+            for (const auto& elem : list) {
+                result += elem.to_json_string() + ",";
+            }
+            if (!list.empty()) {
+                result.pop_back(); // Eliminar la coma extra al final
+            }
+            result += "]";
+            return result;
+        }
+        case Proc:
+            return "\"Proc\"";
+        case Lambda:
+            return "\"Lambda\"";
+        default:
+            return "\"UnknownType\"";
+    }
 }
 
-Variant Variant::from_json_string(string sjson) {
-    // Tu implementación aquí
-}
 
-Variant Variant::parse_json(jsonlib::Json job) {
-    // Tu implementación aquí
-}
