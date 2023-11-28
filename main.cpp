@@ -85,4 +85,14 @@ string Variant::to_json_string() {
     }
 }
 
+Variant Variant::from_json_string(std::string sjson) {
+    string err;
+    json11::Json json = json11::Json::parse(sjson, err);
+    if (!err.empty()) {
+        // Manejar el error de análisis JSON
+        return Variant();
+    }
+    return parse_json(jsonlib::Json(json)); // Convertir json11::Json a jsonlib::Json y llamar a parse_json
+}
+
 
