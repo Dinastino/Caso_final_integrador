@@ -114,5 +114,25 @@ Variant Variant::parse_json(jsonlib::Json job) {
     return Variant();
 }
 
+int main() {
+    // Ejemplo de uso
+    Variant v1(Symbol, "hello");
+    Variant v2(Number, "42.0");
+    Variant v3(List, {v1, v2});
+    Variant v4(proc_type([](const std::vector<Variant>& args) {
+        return Variant(Number, "84.0");
+    }));
 
+    cout << v1.to_string() << endl;
+    cout << v2.to_string() << endl;
+    cout << v3.to_string() << endl;
+    cout << v4.to_string() << endl;
 
+    string json_str = v3.to_json_string();
+    cout << json_str << endl;
+
+    Variant v5 = Variant::from_json_string(json_str);
+    cout << v5.to_string() << endl;
+
+    return 0;
+}
